@@ -920,7 +920,24 @@ timelineEvents.forEach(ev=>{
     <p class="tl-text">${ev.text}</p>`;
   timelineList.appendChild(item);
 });
+const timelineEvents = [
+  { date:'2024-03-26', title:'Our first streak', text:'Where it all started.' }
+];
+timelineEvents.sort((a,b)=> new Date(a.date) - new Date(b.date));
 
+const timelineList = document.getElementById('timelineList');
+const dateFmt = new Intl.DateTimeFormat('en-US', { day:'2-digit', month:'short', year:'numeric' });
+
+timelineEvents.forEach(ev=>{
+  const item = document.createElement('div');
+  item.className = 'tl-item';
+  item.innerHTML = `
+    <span class="tl-dot"></span>
+    <div class="tl-date">${dateFmt.format(new Date(ev.date))}</div>
+    <div class="tl-title">${ev.title}</div>
+    <p class="tl-text">${ev.text}</p>`;
+  timelineList.appendChild(item);
+});
 /* =========================================================
    SCROLL REVEALS
 ========================================================= */
